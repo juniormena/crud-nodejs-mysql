@@ -1,0 +1,61 @@
+<% include partials/header %>
+<pre><%= JSON.stringify(data) %></pre>
+<h1 class="blockquote text-center">CUSTOMERS</h1>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <th>n*</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                        <% if(data) { %>
+                            <% for(let x = 0; x<data.length; x++){%>
+                              <tr>
+                                  <td><%= (x+1) %></td>
+                                  <td><%= data[x].name %></td>
+                                  <td><%= data[x].addres %></td>
+                                  <td><%= data[x].telephone %></td>
+                                  <td>
+                                      <a href="/delete/<%= data[x].id %>" class="btn btn-danger">Delete</a>
+                                      <a href="/update/<%= data[x].id %>" class="btn btn-info">Editar</a>
+                                  </td>
+                              </tr>
+                            <% } %>  
+                          <% } else {%>
+                                <h1>no data</h1>
+                            <%}%>
+                </tbody>  
+            </table>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" value="" placeholder="enter your name"
+                                class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="addres" value="" placeholder="enter your address"
+                                class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="telephone" value="" placeholder="enter your telephone"
+                                class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+</div>
+
+<% include partials/footer %>
